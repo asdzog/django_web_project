@@ -24,6 +24,7 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена за шт.')
     data_created = models.DateField(verbose_name='Дата создания', auto_now_add=True)
     data_modified = models.DateField(verbose_name='Дата изменения', auto_now=True)
+    created_at = models.DateField('date of creation', default='2023-12-01')
 
     def __str__(self):
         return f'Товар {self.product_name} из категории {self.category}'
