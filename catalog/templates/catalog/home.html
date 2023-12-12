@@ -3,22 +3,9 @@
 {% block title_content %}Главная страница{% endblock %}
 {% block body_content %}
 <h1>Главная страница</h1>
-
 <div class="row">
     {% for product in products %}
-    <div class="col-lg-3">
-        <div class="features">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4 class="card-title">{{ product }}</h4>
-                    <h5 class="card-text"> {{ product.category }} </h5>
-                    <p class="card-text">{{ product.product_description }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% include 'catalog/includes/inc_product_card.html' %}
     {% endfor %}
 </div>
-
 {% endblock %}

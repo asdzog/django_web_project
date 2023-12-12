@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+
+{% block title_content %} Страница товара {% endblock %}
+
+{% block body_content %}
+
+<h1>Карточка товара</h1>
+
+<p>Описание товара</p>
+<br>
+<h1>{{ product.product_name }}</h1>
+<p>{{ product.product_description }}</p>
+<p>Категория: {{ product.category }}</p>
+<p>Цена: {{ product.price }} ₽</p>
+<p>Добавлен: {{ product.data_created }}</p>
+
+{% endblock %}
