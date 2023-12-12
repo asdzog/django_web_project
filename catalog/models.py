@@ -9,7 +9,7 @@ class Category(models.Model):
     category_description = models.TextField(verbose_name='Описание категории')
 
     def __str__(self):
-        return f'Категория товаров: {self.category_name}'
+        return f'{self.category_name}'
 
     class Meta:
         verbose_name = 'Категория'
@@ -26,7 +26,7 @@ class Product(models.Model):
     data_modified = models.DateField(verbose_name='Дата изменения', auto_now=True)
 
     def __str__(self):
-        return f'Товар {self.product_name} из категории {self.category}'
+        return f'{self.product_name}'
 
     class Meta:
         verbose_name = 'Товар'  # Настройка для наименования одного объекта
