@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from catalog.models import Product, Category
 
 
 def home(request):
-    return render(request, 'catalog/home.html')
+    context = {
+        'products': Product.objects.all(),
+        'categories': Category.objects.all(),
+    }
+    return render(request, 'catalog/home.html', context)
 
 
 def contacts(request):
@@ -12,3 +17,8 @@ def contacts(request):
         message = request.POST.get('message')
         print(f'{name} ({email}): {message}')
     return render(request, 'catalog/contacts.html')
+
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'product_detail.html', {'product': product})

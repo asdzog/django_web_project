@@ -1,12 +1,11 @@
-{% extends 'catalog/layout.html' %}
+{% extends 'catalog/base.html' %}
 
 {% block title_content %}Главная страница{% endblock %}
-
 {% block body_content %}
-    <div class="features">
-        <h1>Главная страница</h1>
-        <h4>Сайт находится в процессе разработки</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <button class="btn btn-warning">На страницу про нас</button>
-    </div>
+<h1>Главная страница</h1>
+<div class="row">
+    {% for product in products %}
+        {% include 'catalog/includes/inc_product_card.html' %}
+    {% endfor %}
+</div>
 {% endblock %}
