@@ -1,12 +1,13 @@
 {% extends 'catalog/base.html' %}
-
+{% load catalog_tags %}
 {% block title_content %} Страница товара {% endblock %}
 
 {% block body_content %}
 
 <h1>Карточка товара</h1>
 <p>Описание товара</p>
-<img src="{{ product.preview_icon.url }}" alt="{{ product.product_name }}" class="img-fluid">
+<img src="{{ product.preview_icon|my_media }}" alt="{{ product.product_name }}"
+class="img-fluid" width="300px" height="200px">
 <br>
 <h1>{{ product.product_name }}</h1>
 <p>{{ product.product_description }}</p>
