@@ -1,24 +1,44 @@
 from django.shortcuts import render, get_object_or_404
+from django.views import View
+from django.views.generic import ListView, TemplateView
 from catalog.models import Product, Category
 
 
-def home(request):
-    context = {
-        'products': Product.objects.all(),
-        'categories': Category.objects.all(),
+class HomeView(TemplateView):
+    model = Product
+    template_name = 'catalog/home.html'
+    extra_context = {
+        'title': 'home'
     }
-    return render(request, 'catalog/home.html', context)
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['products'] = Product.objects.all()
+        return context
 
 
-def contacts(request):
-    if request.method == 'POST':
+class ContactsPageView(View):
+
+    def get(self, request):
+        context = {'title': 'Контакты'}
+        return render(request, 'catalog/contacts.html', context)
+
+    def post(self, request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
         print(f'{name} ({email}): {message}')
-    return render(request, 'catalog/contacts.html')
+        context = {'title': 'Контакты'}
+        return render(request, 'catalog/contacts.html', context)
 
 
-def product_detail(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    return render(request, 'catalog/product_detail.html', {'product': product})
+class ProductDetailView(ListView):
+
+    def get(self, request, product_id):
+        product = Product.objects.get(id=product_id)
+        context = {
+            'product': product,
+            'title': f'{product.product_name}'
+        }
+        return render(request, 'catalog/product_detail.html', context)
