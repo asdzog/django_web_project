@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_tags %}
+{% block title_content %} Страница товара {% endblock %}
+
+{% block body_content %}
+<div class="col-12 mb-5">
+    <a  class="btn btn-primary" href="{% url 'blog:create' %}"></a>
+</div>
+<h1>Карточка товара</h1>
+<p>Описание товара</p>
+<img src="{{ product.preview_icon|my_media }}" alt="{{ product.product_name }}"
+class="img-fluid" width="300px" height="200px">
+<br>
+<h1>{{ product.product_name }}</h1>
+<p>{{ product.product_description }}</p>
+<p>Категория: {{ product.category }}</p>
+<p>Цена: {{ product.price }} ₽</p>
+<p>Добавлен: {{ product.data_created }}</p>
+{% endblock %}
