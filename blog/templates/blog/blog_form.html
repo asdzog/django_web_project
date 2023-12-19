@@ -7,16 +7,18 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-success">
+
                             {% if object %}
-                                Сохранить
+                                <button type="submit" class="btn btn-success">Сохранить</button>
+                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
                             {% else %}
-                                Создать
+                                <button type="submit" class="btn btn-success">Создать</button>
+                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
                             {% endif %}
-                        </button>
+
                     </form>
                 </div>
             </div>
