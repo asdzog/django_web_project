@@ -1,0 +1,29 @@
+{% extends 'catalog/base.html' %}
+
+{% block body_content %}
+
+<div class="col-12 mt-3">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                            {% if object %}
+                                <button type="submit" class="btn btn-success">Сохранить</button>
+                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
+                            {% else %}
+                                <button type="submit" class="btn btn-success">Создать</button>
+                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
+                            {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

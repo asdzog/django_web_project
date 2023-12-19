@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+{% load blog_tags %}
+{% block title_content %} Статьи {% endblock %}
+
+{% block body_content %}
+{% for object in object_list %}
+<div class="col-12 mt-3">
+    <h4>Статья № {{ object.id }}. "{{ object.title }}"</h4>
+    <img src="{{ object.preview|my_media }}" alt="{{ object.title }}"
+         class="img-fluid" width="300px" height="200px">
+    <br>
+    <p>{{ object.content }}</p>
+    <p>Добавлен: {{ object.data_created }}</p>
+    <p>Просмотры: {{ object.views_count }}</p>
+    <a  class="btn btn-success"
+        href="{% url 'blog:view' object.pk %}">Просмотр статьи</a>
+    <a class="p-2 btn btn-warning"
+       href="{% url 'blog:edit' object.pk %}">Изменить статью</a>
+    <a class="p-2 btn btn-danger"
+       href="{% url 'blog:delete' object.pk %}">Удалить статью</a>
+</div>
+{% endfor %}
+<div class="text-align: center">
+    <a  class="btn btn-primary mb-3" href="{% url 'blog:create' %}">Добавить статью</a>
+</div>
+
+{% endblock %}
