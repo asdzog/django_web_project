@@ -6,13 +6,14 @@
     <div class="features">
         <h1>Контакты</h1>
         {{ products }}
-        <p>Оставьте ваши контактные данные для связи, и мы обязательно с вами свяжемся!</p>
+        <p>Оставьте ваши контактные данные для связи,
+            и мы обязательно с вами свяжемся!</p>
         <br>
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="name" /><br>
-            <input type="email" name="email" /><br>
-            <textarea name="message"></textarea><br>
+            <input type="text" name="name" placeholder="Введите Ваше имя"/><br>
+            <input type="email" name="email" placeholder="Введите Вашу почту"/><br>
+            <textarea name="message" placeholder="Введите сообщение"></textarea><br>
             <br>
             <input type="submit" class="btn btn-primary" value="Отправить" />
         </form>
