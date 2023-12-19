@@ -1,0 +1,13 @@
+{% extends 'catalog/base.html' %}
+
+{% block body_content %}
+<h4>{{ object.title }}</h4>
+<img src="/media/{{ object.preview }}" alt="{{ object.title }}"
+     class="img-fluid" width="300px" height="200px">
+<br><p>{{ object.content }}</p><br>
+<p>Добавлен: {{ object.date_created }}</p>
+<div class="py-4">
+
+    <p>Просмотры: {{ object.views_count }}</p>
+</div>
+{% endblock %}
