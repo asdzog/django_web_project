@@ -10,7 +10,7 @@
                     width="150px" height="100px">
                     <p class="card-text">{{ product.product_description }}</p>
                     <p>Price: {{ product.price }}</p>
-                    <a href="{% url 'product_detail' product_id=product.id %}" class="btn btn-success">Подробнее о товаре</a>
+                    <a href="{% url 'catalog:product_detail' product_id=product.id %}" class="btn btn-success">Подробнее о товаре</a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, CreateView
+
+from catalog.forms import ProductForm
 from catalog.models import Product, Category
 
 
@@ -42,3 +45,13 @@ class ProductDetailView(ListView):
             'title': f'{product.product_name}'
         }
         return render(request, 'catalog/product_detail.html', context)
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
+    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse('product_details', args=[self.object.pk])
