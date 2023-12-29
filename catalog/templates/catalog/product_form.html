@@ -5,14 +5,24 @@
     <div class="col-6">
         <div class="card">
             <div class="card-header">
-                Добавление товара
+                {% if product %}
+                    Изменение товара
+                {% else %}
+                    Добавление товара
+                {% endif %}
             </div>
             <div class="card-body">
-                <from method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-success">Добавить</button>
-                </from>
+                    <button type="submit" class="btn btn-success">
+                        {% if product %}
+                            Изменить позицию
+                        {% else %}
+                            Добавить позицию
+                        {% endif %}
+                    </button>
+                </form>
             </div>
         </div>
     </div>
