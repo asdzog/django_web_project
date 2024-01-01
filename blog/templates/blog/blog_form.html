@@ -13,12 +13,11 @@
 
                             {% if object %}
                                 <button type="submit" class="btn btn-success">Сохранить</button>
-                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
                             {% else %}
                                 <button type="submit" class="btn btn-success">Создать</button>
-                                <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
                             {% endif %}
 
+                        <a href="{% url 'blog:list' %}" class="p-2 btn btn-primary">Отмена</a>
                     </form>
                 </div>
             </div>
