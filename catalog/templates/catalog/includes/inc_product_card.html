@@ -1,24 +1,27 @@
 {% load static %}
 {% load catalog_tags %}
 <div class="col-lg-3 mb-2 mt-2">
-        <div class="features">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4 class="card-title">{{ product }}</h4>
-                    <h5 class="card-text"> {{ product.category }} </h5>
-                    <img src="{{ product.preview_icon|my_media }}"
-                         alt="{{ product.product_name }}" class="img-fluid"
-                         width="150px" height="100px">
-                    <p class="card-text">{{ product.product_description }}</p>
-                    <p>Price: {{ product.price }}</p>
-                    <a href="{% url 'catalog:product_detail' product.id %}"
-                       class="btn btn-success" style="width: 100%;">Подробнее о товаре</a>
-                    <a href="{% url 'catalog:update_product' product.id %}"
-                       class="btn btn-warning mb-1 mt-1">Редактировать</a>
-                    <a href="{% url 'catalog:delete_product' product.id %}"
-                       class="btn btn-danger mb-1 mt-1">Удалить</a>
-                </div>
+    <div class="features">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">{{ product }}</h4>
+                <h5 class="card-text"> {{ product.category }} </h5>
+                <img src="{{ product.preview_icon|my_media }}"
+                     alt="{{ product.product_name }}" class="img-fluid"
+                     width="150px" height="100px">
+                <p class="card-text">{{ product.product_description }}</p>
+                <p>Price: {{ product.price }}</p>
+                    {% if product.active_version %}
+                        Версия {{ product.active_version.name_version }} № {{ product.active_version.number_version }}
+                    {% endif %}
+                <a href="{% url 'catalog:product_detail' product.id %}"
+                   class="btn btn-success" style="width: 100%;">Подробнее о товаре</a>
+                <a href="{% url 'catalog:update_product' product.id %}"
+                   class="btn btn-warning mb-1 mt-1">Редактировать</a>
+                <a href="{% url 'catalog:delete_product' product.id %}"
+                   class="btn btn-danger mb-1 mt-1">Удалить</a>
             </div>
         </div>
     </div>
+</div>
 
