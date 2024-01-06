@@ -9,5 +9,7 @@
 <div class="py-4">
 
     <p>Просмотры: {{ object.views_count }}</p>
+    <a  class="btn btn-success"
+        href="{% url 'blog:list' %}">К списку статей</a>
 </div>
 {% endblock %}

@@ -14,4 +14,13 @@ class="img-fluid" width="300px" height="200px">
 <p>Категория: {{ product.category }}</p>
 <p>Цена: {{ product.price }} ₽</p>
 <p>Добавлен: {{ product.data_created }}</p>
+<p>
+    {% if product.active_version %}
+    <small class="text-body-secondary mb-2 mt-2">
+        Версия {{ product.active_version.name_version }} № {{ product.active_version.number_version }}
+    </small>
+    {% endif %}
+</p>
+<a  class="btn btn-success"
+        href="{% url 'catalog:home' %}">К списку товаров</a>
 {% endblock %}

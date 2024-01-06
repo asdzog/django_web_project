@@ -1,3 +1,4 @@
+from typing import Optional
 from django.db import models
 
 
@@ -28,6 +29,24 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.product_name}'
 
+    @property
+    def active_version(self) -> Optional['Version']:
+        return self.version_set.filter(is_active=True).last()
+
     class Meta:
         verbose_name = 'Товар'  # Настройка для наименования одного объекта
         verbose_name_plural = 'Товары'  # Настройка для наименования набора объектов
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    number_version = models.IntegerField(verbose_name="Номер версии")
+    name_version = models.CharField(max_length=100, verbose_name="Название версии")
+    is_active = models.BooleanField(default=True, verbose_name='Признак текущей версии')
+
+    def __str__(self):
+        return f'{self.product} {self.name_version}'
+
+    class Meta:
+        verbose_name = 'Версия'
+        verbose_name_plural = 'Версии'
