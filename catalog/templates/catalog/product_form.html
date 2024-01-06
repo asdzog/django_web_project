@@ -2,16 +2,16 @@
 
 {% block body_content %}
 <div class="col-12 mt-3">
-    <form class="row method="post" enctype="multipart/form-data">
+    <form class="row" method="post" enctype="multipart/form-data">
         <div class="col-6">
             <div class="card">
-                <div class="card-header">
+                <h3 class="card-header">
                     {% if product %}
                     Изменение товара
                     {% else %}
                     Добавление товара
                     {% endif %}
-                </div>
+                </h3>
                 <div class="card-body">
 
                     {% csrf_token %}
@@ -37,7 +37,7 @@
                 <div class="card-body">
                     {{ formset.management_form }}
                     {% for form in formset.forms %}
-                    {{ form.as_p }}
+                        {{ form.as_p }}
                     {% endfor %}
                 </div>
             </div>
