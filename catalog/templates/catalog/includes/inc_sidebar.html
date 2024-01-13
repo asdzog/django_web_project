@@ -25,9 +25,16 @@
             <a href="{% url 'catalog:contacts' %}">
                 <i class="fa-regular fa-paper-plane"> Контакты </i></a>
         </li>
-        <li>
-            <a href="{% url 'users:login' %}">
-                <i class="fa fa-user-circle"> Войти </i></a>
-        </li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'users:profile' %}">
+                <i class="fa-solid fa-user-tie"> Профиль </i></a></li>
+        <li><a href="{% url 'users:logout' %}">
+                <i class="fa-solid fa-person-walking-arrow-right"> Выйти </i></a></li>
+        {% else %}
+        <li><a href="{% url 'users:login' %}">
+                <i class="fa fa-user-circle"> Войти </i></a></li>
+        <li><a href="{% url 'users:register' %}">
+                <i class="fa-solid fa-user-check"> Регистрация </i></a></li>
+        {% endif %}
     </ul>
 </aside>
