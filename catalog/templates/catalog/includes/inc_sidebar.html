@@ -9,26 +9,32 @@
         <br>
     </div>
     <ul>
-        <a href="{% url 'catalog:home' %}">
-            <li>
-                <i class="fa-solid fa-house"> Главная </i>
-            </li>
-        </a>
-        <a href="{% url 'blog:list' %}">
-            <li>
-                <i class="fa-solid fa-newspaper"> Статьи </i>
-            </li>
-        </a>
-        <a href="{% url 'blog:create' %}">
-            <li>
-                <i class="fa-solid fa-pen-nib"> Добавить статью </i>
-            </li>
-        </a>
-        <a href="{% url 'catalog:contacts' %}">
-            <li>
-                <i class="fa-regular fa-paper-plane"> Контакты </i>
-            </li>
-
-        </a>
+        <li>
+            <a href="{% url 'catalog:home' %}">
+                <i class="fa-solid fa-house"> Главная </i></a>
+        </li>
+        <li>
+            <a href="{% url 'blog:list' %}">
+                <i class="fa-solid fa-newspaper"> Статьи </i></a>
+        </li>
+        <li>
+            <a href="{% url 'blog:create' %}">
+                <i class="fa-solid fa-pen-nib"> Добавить статью </i></a>
+        </li>
+        <li>
+            <a href="{% url 'catalog:contacts' %}">
+                <i class="fa-regular fa-paper-plane"> Контакты </i></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'users:profile' %}">
+                <i class="fa-solid fa-user-tie"> Профиль </i></a></li>
+        <li><a href="{% url 'users:logout' %}">
+                <i class="fa-solid fa-person-walking-arrow-right"> Выйти </i></a></li>
+        {% else %}
+        <li><a href="{% url 'users:login' %}">
+                <i class="fa fa-user-circle"> Войти </i></a></li>
+        <li><a href="{% url 'users:register' %}">
+                <i class="fa-solid fa-user-check"> Регистрация </i></a></li>
+        {% endif %}
     </ul>
 </aside>
