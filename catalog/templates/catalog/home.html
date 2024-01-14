@@ -3,10 +3,12 @@
 {% block title_content %}Главная страница{% endblock %}
 {% block body_content %}
 <h1><em>Главная страница с товарами </em></h1>
+{% if user.is_authenticated %}
 <div class="row">
     <a class="col-4 mt-3 mb-3 btn btn-primary"
        href="{% url 'catalog:create_product' %}">Добавить товар</a>
 </div>
+{% endif %}
 <div class="row">
     {% for product in products %}
         {% include 'catalog/includes/inc_product_card.html' %}
