@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView
 from django.core.mail import send_mail
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -60,9 +60,9 @@ class UserConfirmEmailView(View):
             user.email_verified = True
             user.save()
             login(request, user)
-            return redirect('users:profile')
+            return redirect('users:registration_succeeded')
         else:
-            return redirect('users:profile')
+            return redirect('users:registration_failed')
 
 
 class EmailConfirmView(TemplateView):
@@ -93,4 +93,12 @@ def generate_new_psw(request):
     )
     request.user.set_password(new_password)
     request.user.save()
-    return redirect(reverse('catalog:home'))
+    return redirect(reverse('users:login'))
+
+
+class RegisterFailView(View):
+    template_name = 'users/registration_failed.html'
+
+
+class RegisterSuccessView(TemplateView):
+    template_name = 'users/registration_succeeded.html'
