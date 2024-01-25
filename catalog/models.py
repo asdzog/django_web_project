@@ -1,6 +1,7 @@
 from typing import Optional
 from django.db import models
 
+from config import settings
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -25,6 +26,7 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена за шт.')
     data_created = models.DateField(verbose_name='Дата создания', auto_now_add=True)
     data_modified = models.DateField(verbose_name='Дата изменения', auto_now=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Автор')
 
     def __str__(self):
         return f'{self.product_name}'

@@ -1,0 +1,1 @@
+[{"model": "blog.blog", "pk": 1, "fields": {"title": "Ноутбук для разработчика", "slug": "", "content": "Рабочий инструмент или средство для развлечений - все зависит от того, что находится внутри, параметров \"железа\".", "preview": "blog/hp_15_bpZ0uRo.jpeg", "date_created": "2023-12-21", "is_published": true, "views_count": 11}}]

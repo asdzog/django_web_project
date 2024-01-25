@@ -1,0 +1,14 @@
+{% extends 'catalog/base.html' %}
+
+{% block body_content %}
+
+<div class="alert alert-info" role="alert">
+    <h3 class="alert-heading">Ссылка отправлена на вашу электронную почту</h3>
+    <p>
+        Проверьте вашу почту и подтвердите регистрацию.
+        Если письма нет во входящих, проверьте папку "Спам".
+    </p>
+    <a href="{% url 'catalog:home' %}" class="p-2 btn btn-primary">На главную</a>
+</div>
+
+{% endblock %}
