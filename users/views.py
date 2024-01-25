@@ -6,7 +6,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 from django.conf import settings
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, TemplateView
 from users.forms import UserRegisterForm, UserProfileForm
@@ -74,7 +74,7 @@ class EmailConfirmView(TemplateView):
         return context
 
 
-class ProfileView(UpdateView):
+class ProfileUpdateView(UpdateView):
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
@@ -93,7 +93,7 @@ def generate_new_psw(request):
     )
     request.user.set_password(new_password)
     request.user.save()
-    return redirect(reverse('users:login'))
+    return render(request, 'users/password_changed.html')
 
 
 class RegisterFailView(View):
