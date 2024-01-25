@@ -27,6 +27,7 @@ class Product(models.Model):
     data_created = models.DateField(verbose_name='Дата создания', auto_now_add=True)
     data_modified = models.DateField(verbose_name='Дата изменения', auto_now=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Автор')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликован')
 
     def __str__(self):
         return f'{self.product_name}'
