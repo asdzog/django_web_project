@@ -21,9 +21,11 @@
                 {% else %}
                 <p> Автор отсутствует </p>
                 {% endif %}
-                {% if user.is_authenticated %}
+                {% if perms.catalog.change_product %}
                 <a href="{% url 'catalog:update_product' product.id %}"
                    class="btn btn-warning mb-1 mt-1">Редактировать</a>
+                {% endif %}
+                {% if perms.catalog.delete_product %}
                 <a href="{% url 'catalog:delete_product' product.id %}"
                    class="btn btn-danger mb-1 mt-1">Удалить</a>
                 {% endif %}
