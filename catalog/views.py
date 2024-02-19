@@ -50,7 +50,7 @@ class ProductDetailView(ListView):
         return render(request, 'catalog/product_detail.html', context)
 
 
-class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     permission_required = 'catalog.add_product'
@@ -68,7 +68,7 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
         self.object = form.save()
-        self.object.user = self.request.user
+        self.object.owner = self.request.user
         self.object.save()
         if formset.is_valid():
             formset.instance = self.object
