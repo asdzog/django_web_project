@@ -53,6 +53,7 @@ class ProductDetailView(ListView):
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
+    permission_required = 'catalog.add_product'
     success_url = reverse_lazy('catalog:home')
 
     def get_context_data(self, **kwargs):
@@ -67,6 +68,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
         self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
         if formset.is_valid():
             formset.instance = self.object
             formset.save()
@@ -81,7 +84,7 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if self.object.user != self.request.user and not self.request.user.is_staff:
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
             raise Http404("Вы не являетесь владельцем этого товара")
         return self.object
 
