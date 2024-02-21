@@ -14,8 +14,10 @@
                     {% if product.active_version %}
                         Версия {{ product.active_version.name_version }} № {{ product.active_version.number_version }}
                     {% endif %}
+                {% if perms.catalog.view_product %}
                 <a href="{% url 'catalog:product_detail' product.id %}"
                    class="btn btn-success" style="width: 100%;">Подробнее о товаре</a>
+                 {% endif %}
                 {% if product.owner %}
                 <p> Автор - {{ product.owner }} </p>
                 {% else %}
